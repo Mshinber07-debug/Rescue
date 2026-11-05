@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rescue the Startup · 7 Kings</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&display=swap">
+<style>
+:root{--bg:#f3f4fa;--card:#fff;--ink:#14173a;--mute:#5b5f84;--line:#d9dcee;--brand:#2b2f8f;--gold:#f0b429;--goldink:#4a3500;--good:#14804a;--bad:#b42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1129;--card:#191c3f;--ink:#eceefc;--mute:#a3a8d6;--line:#2e3366;--brand:#9aa2ff;--gold:#f0b429;--goldink:#2a1d00;--good:#4cc38a;--bad:#ff8a80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1129;--card:#191c3f;--ink:#eceefc;--mute:#a3a8d6;--line:#2e3366;--brand:#9aa2ff;--gold:#f0b429;--goldink:#2a1d00;--good:#4cc38a;--bad:#ff8a80;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+header{background:var(--brand);color:#fff;padding:20px 16px 0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) header{background:#23276b;color:#fff}}
+.wrap{max-width:760px;margin:0 auto}
+header h1{font-size:clamp(26px,6vw,38px);font-weight:800}
+header p{margin:6px 0 14px;opacity:.85}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav button{flex:1 0 auto;border:0;background:rgba(255,255,255,.14);color:#fff;padding:12px 16px;border-radius:12px 12px 0 0;font:600 15px inherit;font-family:inherit;cursor:pointer}
+nav button[aria-selected=true]{background:var(--bg);color:var(--ink)}
+main{padding:22px 16px 60px}
+section{display:none}section.on{display:block}
+h2{font-size:28px;font-weight:800;margin-bottom:8px}
+.lead{color:var(--mute);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px}
+label{display:block;font-weight:600;margin:0 0 6px}
+input[type=text],textarea{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;margin-bottom:14px}
+textarea{min-height:80px}
+.seg{display:inline-flex;border:2px solid var(--ink);border-radius:12px;overflow:hidden}
+.seg button{border:0;background:transparent;color:var(--ink);padding:10px 18px;font:600 15px inherit;font-family:inherit;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.btn{background:var(--gold);color:var(--goldink);border:0;border-radius:12px;padding:13px 22px;font:700 16px inherit;font-family:inherit;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:9px 16px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.story{border-left:6px solid var(--gold)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.stats span{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-weight:600;font-size:14px}
+.timer{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.time{font:800 44px "Bricolage Grotesque",system-ui,sans-serif;min-width:110px}
+.bar{height:8px;background:var(--line);border-radius:8px;overflow:hidden;margin:10px 0 12px}
+.bar i{display:block;height:100%;width:100%;background:var(--brand)}
+ol.rank{list-style:none;margin:0;padding:0}
+ol.rank li{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.pos{font:800 24px "Bricolage Grotesque",system-ui,sans-serif;width:34px;text-align:center;color:var(--brand)}
+.txt{flex:1}
+.mv{display:flex;gap:6px}
+.mv button{width:40px;height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font-size:18px;cursor:pointer}
+.mv button:disabled{opacity:.3}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.score{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.score div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center}
+.score b{display:block;font:800 40px "Bricolage Grotesque",system-ui,sans-serif}
+.score small{color:var(--mute)}
+.verdict{font-weight:700;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+.tw{overflow-x:auto}
+th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+td.n{text-align:center;white-space:nowrap}
+.d0{color:var(--good);font-weight:700}.d3{color:var(--bad);font-weight:700}
+.q{margin-bottom:10px}
+.q li{margin-bottom:6px}
+.scale{display:flex;gap:8px;margin-bottom:14px}
+.scale button{width:46px;height:46px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:700 16px inherit;font-family:inherit;cursor:pointer}
+.scale button.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.note{font-size:14px;color:var(--mute)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Rescue the Startup</h1>
+<p>A team decision activity by 7 Kings · 30 minutes · room and online</p>
+<nav id="nav" role="tablist"></nav>
+</div></header>
+<main><div class="wrap" id="app"></div></main>
+
+<script>
+var FORM_URL=""; // paste your Google Form / Moodle feedback link here
+var ITEMS=[
+{k:"a",t:"Talk to 20 customers who stopped using the app",r:1,w:"Before spending anything, find out why people leave. It is cheap and it tells you where the leak is."},
+{k:"b",t:"Fix the sign-up and first-order flow in the app",r:2,w:"60% leave after the first order, so the first experience is the problem. Fix it before bringing in more users."},
+{k:"c",t:"Cancel the office rent and work remotely",r:3,w:"A fast, certain saving that adds months to your runway."},
+{k:"d",t:"Launch a referral offer: a discount for inviting a friend",r:4,w:"Cheap growth, but it only works once the first order is fixed."},
+{k:"e",t:"Spend €5,000 on social media ads",r:5,w:"Ads bring users into a leaking bucket. Wait until retention improves."},
+{k:"f",t:"Build the 3 features investors asked for",r:6,w:"Useful for the relationship, but it does not solve the retention problem."},
+{k:"g",t:"Attend a big startup conference",r:7,w:"Good for contacts, costly in time and money right now."},
+{k:"h",t:"Redesign the logo and brand identity",r:8,w:"Looks do not fix why customers leave."},
+{k:"i",t:"Hire an experienced marketing manager",r:9,w:"A big salary your budget cannot carry, and marketing is not the main problem."},
+{k:"j",t:"Expand to a second city",r:10,w:"Growing a broken model multiplies the loss."}
+];
+var TABS=["Start","1 Alone","2 Team","3 Check","4 Finish"];
+var S={tab:0,max:0,mv1:0,agreed:false,name:"",team:"",where:"room",solo:null,team_:null,fb:{a:0,b:0,c:""}};
+var saved=null;
+try{saved=JSON.parse(localStorage.getItem("sk7")||"null")}catch(e){}
+if(saved){for(var k in saved)S[k]=saved[k];}
+function save(){try{localStorage.setItem("sk7",JSON.stringify(S))}catch(e){}}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+if(!S.solo)S.solo=shuffle(ITEMS.map(function(x){return x.k}));
+if(!S.team_)S.team_=S.solo.slice();
+var get=function(k){return ITEMS.filter(function(x){return x.k===k})[0]};
+var timers={};
+function score(order){var s=0;order.forEach(function(k,i){s+=Math.abs(i+1-get(k).r)});return s}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+function nav(){
+ var n=document.getElementById("nav");n.innerHTML="";
+ TABS.forEach(function(t,i){var b=document.createElement("button");b.textContent=t;b.setAttribute("role","tab");b.setAttribute("aria-selected",S.tab===i);if(i>S.max){b.disabled=true;b.textContent="🔒 "+t;b.style.opacity=.55;b.title="Finish the previous step first"}b.onclick=function(){go(i)};n.appendChild(b)});
+}
+function go(i){if(i>S.max+1)return;if(i>S.max)S.max=i;S.tab=i;save();render();window.scrollTo(0,0)}
+
+function timerHTML(id,mins){return '<div class="card"><div class="timer"><div class="time" id="t-'+id+'">'+mins+':00</div><button class="btn ghost" data-t="start" data-id="'+id+'" data-m="'+mins+'">Start timer</button><button class="btn ghost" data-t="reset" data-id="'+id+'" data-m="'+mins+'">Restart</button></div><div class="bar"><i id="b-'+id+'"></i></div></div>'}
+function bindTimers(){
+ document.querySelectorAll("[data-t]").forEach(function(b){b.onclick=function(){
+  var id=b.dataset.id,m=+b.dataset.m,total=m*60;
+  clearInterval(timers[id]);
+  var left=total;
+  function draw(){var el=document.getElementById("t-"+id);if(!el){clearInterval(timers[id]);return}
+   el.textContent=Math.floor(left/60)+":"+("0"+left%60).slice(-2);
+   document.getElementById("b-"+id).style.width=(left/total*100)+"%";}
+  draw();
+  if(b.dataset.t==="start"){timers[id]=setInterval(function(){left--;draw();if(left<=0)clearInterval(timers[id])},1000)}
+ }});
+}
+function rankHTML(key){
+ var o=S[key];
+ return '<ol class="rank">'+o.map(function(k,i){return '<li><span class="pos">'+(i+1)+'</span><span class="txt">'+esc(get(k).t)+'</span><span class="mv"><button data-mv="'+key+'" data-i="'+i+'" data-d="-1" aria-label="Move up"'+(i===0?" disabled":"")+'>↑</button><button data-mv="'+key+'" data-i="'+i+'" data-d="1" aria-label="Move down"'+(i===o.length-1?" disabled":"")+'>↓</button></span></li>'}).join("")+'</ol>';
+}
+function bindRank(){
+ document.querySelectorAll("[data-mv]").forEach(function(b){b.onclick=function(){
+  var key=b.dataset.mv,i=+b.dataset.i,d=+b.dataset.d,o=S[key],j=i+d;
+  var t=o[i];o[i]=o[j];o[j]=t;if(key==="solo")S.mv1=1;save();render(true)}});
+}
+var STORY='<div class="card story"><h3>The situation</h3><p><b>CampusBite</b> is a student food-delivery app. It has <b>€20,000</b> left, enough for 3 months. It has 500 users, but <b>60% never order again</b> after their first order.</p><p>You have 30 days to turn it around. Rank these 10 decisions from <b>1 (do first)</b> to <b>10 (least important)</b>.</p><div class="stats"><span>€20,000 left</span><span>500 users</span><span>60% leave after order 1</span></div></div>';
+
+function render(keep){
+ nav();
+ var A=document.getElementById("app"),h="";
+ if(S.tab===0){
+  h='<h2>Welcome, team lead or player</h2><p class="lead">Four steps. Your answers stay on this device. Nothing is sent anywhere.</p><div class="card"><label for="nm">Your name</label><input type="text" id="nm" value="'+esc(S.name)+'"><label for="tm">Your team</label><input type="text" id="tm" value="'+esc(S.team)+'" placeholder="e.g. Team Alpha"><label>Where are you today?</label><div class="seg"><button data-w="room" class="'+(S.where==="room"?"on":"")+'">In the room</button><button data-w="online" class="'+(S.where==="online"?"on":"")+'">Online</button></div></div>'+
+  '<div class="card"><ol class="q"><li><b>Alone</b> (5 min): rank the 10 decisions silently.</li><li><b>Team</b> (8 min): agree one shared ranking. Mixed room and online teams.</li><li><b>Check</b> (4 min): compare scores with the expert answer.</li><li><b>Finish</b>: short anonymous feedback.</li></ol></div>'+
+  '<button class="btn" id="go" '+(S.name&&S.team?"":"disabled")+'>Start step 1 →</button> <button class="btn ghost" id="rs">Reset my progress</button>';
+ }
+ if(S.tab===1){
+  h='<h2>Step 1 · Alone</h2><p class="lead">Rank on your own. No talking yet. Use the arrows.</p>'+STORY+timerHTML("solo",5)+rankHTML("solo")+'<div class="row"><button class="btn" id="go"'+(S.mv1?'':' disabled')+'>I am done, go to my team →</button></div>'+(S.mv1?'':'<p class="note">Rank the items (move at least one) to unlock the next step.</p>');
+ }
+ if(S.tab===2){
+  h='<h2>Step 2 · Team</h2><p class="lead">Discuss, then agree one ranking for '+esc(S.team||"your team")+'. Online members join your team’s call. One person moves the items while the screen is shared.</p><div class="card"><b>Before you decide:</b> how will you decide? Vote, consensus, or one person decides after listening? Hear the quiet voices first.</div>'+timerHTML("team",8)+rankHTML("team_")+'<div class="row"><button class="btn ghost" id="copy">Copy my ranking into the team list</button><button class="btn" id="go"'+(S.agreed?'':' disabled')+'>We agree, check the answer →</button></div><label class="card" style="margin-top:14px;display:flex;gap:10px;align-items:center;cursor:pointer"><input type="checkbox" id="ag"'+(S.agreed?' checked':'')+'> The whole team agrees on this order</label>';
+ }
+ if(S.tab===3){
+  var a=score(S.solo),b=score(S.team_);
+  var verdict=b<a?"Your team beat your individual ranking by "+(a-b)+" points. The group added something you did not have alone.":(b===a?"Same score. Did the team add anything, or did one person decide?":"Your individual ranking was better by "+(b-a)+" points. What did the team lose? Think about who was heard.");
+  h='<h2>Step 3 · Check</h2><p class="lead">Score = sum of how far each item is from the expert position. Lower is better. 0 is perfect.</p><div class="score"><div><b>'+a+'</b><small>Alone</small></div><div><b>'+b+'</b><small>Team</small></div></div><p class="verdict">'+verdict+'</p>'+
+  '<div class="card tw"><table><thead><tr><th>Decision and why</th><th>Expert</th><th>You</th><th>Team</th></tr></thead><tbody>'+
+  ITEMS.slice().sort(function(x,y){return x.r-y.r}).map(function(it){var p1=S.solo.indexOf(it.k)+1,p2=S.team_.indexOf(it.k)+1;
+   function c(p){var d=Math.abs(p-it.r);return '<td class="n '+(d===0?"d0":d>=3?"d3":"")+'">'+p+'</td>'}
+   return '<tr><td><b>'+esc(it.t)+'</b><br><span class="note">'+esc(it.w)+'</span></td><td class="n"><b>'+it.r+'</b></td>'+c(p1)+c(p2)+'</tr>'}).join("")+'</tbody></table></div>'+
+  '<p class="note">The expert order is a reasoned answer, not the only one. A strong argument for a different order is worth discussing.</p>'+
+  '<div class="card"><h3>Discuss (10 min)</h3><ol class="q"><li>What happened? Was the team better than individuals? Why?</li><li>How did you decide: vote, consensus, or one leader?</li><li>Were quiet and online voices heard?</li><li>Where does this happen in real teams?</li><li>What will you do differently next time?</li></ol></div><div class="row"><button class="btn" id="go">Go to feedback →</button></div>';
+ }
+ if(S.tab===4){
+  function sc(k,q){var s='<label>'+q+'</label><div class="scale">';for(var i=1;i<=5;i++)s+='<button data-s="'+k+'" data-v="'+i+'" class="'+(S.fb[k]===i?"on":"")+'">'+i+'</button>';return s+'</div>'}
+  h='<h2>Step 4 · Feedback</h2><p class="lead">About 3 minutes. Anonymous. Tell the 7 Kings how it went.</p><div class="card">'+sc("a","Did the activity reach its objective? (1 to 5)")+sc("b","Were the instructions clear? (1 to 5)")+'<label for="fc">One thing to improve</label><textarea id="fc">'+esc(S.fb.c)+'</textarea>'+(FORM_URL?'<a class="btn" style="display:inline-block;text-decoration:none" href="'+FORM_URL+'" target="_blank" rel="noopener">Open the feedback form</a>':'<p class="note">Facilitators: add your form link at the top of the file (FORM_URL) to collect answers.</p>')+'</div><div class="card"><h3>Thank you, '+esc(S.name||"")+'</h3><p>Rule to take away: decide how you will decide <i>before</i> the problem arrives.</p></div>';
+ }
+ A.innerHTML=h;
+ var go_=document.getElementById("go");if(go_)go_.onclick=function(){go(S.tab+1)};
+ var nm=document.getElementById("nm");
+ if(nm){var tm=document.getElementById("tm");
+  function chk(){S.name=nm.value.trim();S.team=tm.value.trim();save();document.getElementById("go").disabled=!(S.name&&S.team)}
+  nm.oninput=chk;tm.oninput=chk;
+  document.querySelectorAll("[data-w]").forEach(function(b){b.onclick=function(){S.where=b.dataset.w;save();render()}});}
+ var ag=document.getElementById("ag");if(ag)ag.onchange=function(){S.agreed=ag.checked;save();render()};var rs=document.getElementById("rs");if(rs)rs.onclick=function(){S.max=0;S.mv1=0;S.agreed=false;S.solo=shuffle(ITEMS.map(function(x){return x.k}));S.team_=S.solo.slice();S.fb={a:0,b:0,c:""};save();render()};var cp=document.getElementById("copy");if(cp)cp.onclick=function(){S.team_=S.solo.slice();save();render()};
+ document.querySelectorAll("[data-s]").forEach(function(b){b.onclick=function(){S.fb[b.dataset.s]=+b.dataset.v;save();render()}});
+ var fc=document.getElementById("fc");if(fc)fc.oninput=function(){S.fb.c=fc.value;save()};
+ bindTimers();bindRank();
+}
+render();
+</script>
+</body>
+</html>
